@@ -10,6 +10,12 @@
 		3FE36B211AA88E52005D06FE /* WebKitPlus.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FE36B201AA88E52005D06FE /* WebKitPlus.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3FE36B271AA88E52005D06FE /* WebKitPlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FE36B1B1AA88E52005D06FE /* WebKitPlus.framework */; };
 		3FE36B2E1AA88E52005D06FE /* WebKitPlusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE36B2D1AA88E52005D06FE /* WebKitPlusTests.swift */; };
+		3FE36B381AA892F1005D06FE /* WKUIDelegatePlus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE36B371AA892F1005D06FE /* WKUIDelegatePlus.swift */; };
+		3FE36B3A1AA89346005D06FE /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FE36B391AA89346005D06FE /* WebKit.framework */; };
+		3FE36B3C1AA893F3005D06FE /* WebViewObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE36B3B1AA893F3005D06FE /* WebViewObserver.swift */; };
+		3FE36B3E1AA89448005D06FE /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE36B3D1AA89448005D06FE /* Functions.swift */; };
+		3FE36B401AA8949C005D06FE /* ZenWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE36B3F1AA8949C005D06FE /* ZenWebViewController.swift */; };
+		3FE36B431AA89553005D06FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3FE36B451AA89553005D06FE /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +35,13 @@
 		3FE36B261AA88E52005D06FE /* WebKitPlusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebKitPlusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FE36B2C1AA88E52005D06FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FE36B2D1AA88E52005D06FE /* WebKitPlusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebKitPlusTests.swift; sourceTree = "<group>"; };
+		3FE36B371AA892F1005D06FE /* WKUIDelegatePlus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKUIDelegatePlus.swift; sourceTree = "<group>"; };
+		3FE36B391AA89346005D06FE /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		3FE36B3B1AA893F3005D06FE /* WebViewObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewObserver.swift; sourceTree = "<group>"; };
+		3FE36B3D1AA89448005D06FE /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		3FE36B3F1AA8949C005D06FE /* ZenWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZenWebViewController.swift; sourceTree = "<group>"; };
+		3FE36B441AA89553005D06FE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3FE36B461AA895E6005D06FE /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FE36B3A1AA89346005D06FE /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,8 +85,14 @@
 		3FE36B1D1AA88E52005D06FE /* WebKitPlus */ = {
 			isa = PBXGroup;
 			children = (
-				3FE36B201AA88E52005D06FE /* WebKitPlus.h */,
+				3FE36B3D1AA89448005D06FE /* Functions.swift */,
+				3FE36B451AA89553005D06FE /* Localizable.strings */,
 				3FE36B1E1AA88E52005D06FE /* Supporting Files */,
+				3FE36B391AA89346005D06FE /* WebKit.framework */,
+				3FE36B201AA88E52005D06FE /* WebKitPlus.h */,
+				3FE36B3B1AA893F3005D06FE /* WebViewObserver.swift */,
+				3FE36B371AA892F1005D06FE /* WKUIDelegatePlus.swift */,
+				3FE36B3F1AA8949C005D06FE /* ZenWebViewController.swift */,
 			);
 			path = WebKitPlus;
 			sourceTree = "<group>";
@@ -175,6 +195,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ja,
 			);
 			mainGroup = 3FE36B111AA88E52005D06FE;
 			productRefGroup = 3FE36B1C1AA88E52005D06FE /* Products */;
@@ -192,6 +213,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FE36B431AA89553005D06FE /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +231,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FE36B381AA892F1005D06FE /* WKUIDelegatePlus.swift in Sources */,
+				3FE36B3C1AA893F3005D06FE /* WebViewObserver.swift in Sources */,
+				3FE36B3E1AA89448005D06FE /* Functions.swift in Sources */,
+				3FE36B401AA8949C005D06FE /* ZenWebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,6 +255,18 @@
 			targetProxy = 3FE36B281AA88E52005D06FE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3FE36B451AA89553005D06FE /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3FE36B441AA89553005D06FE /* en */,
+				3FE36B461AA895E6005D06FE /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		3FE36B2F1AA88E52005D06FE /* Debug */ = {
@@ -266,7 +304,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -306,7 +344,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -319,6 +357,8 @@
 		3FE36B321AA88E52005D06FE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -328,12 +368,15 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		3FE36B331AA88E52005D06FE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -395,6 +438,7 @@
 				3FE36B331AA88E52005D06FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3FE36B341AA88E52005D06FE /* Build configuration list for PBXNativeTarget "WebKitPlusTests" */ = {
 			isa = XCConfigurationList;
@@ -403,6 +447,7 @@
 				3FE36B361AA88E52005D06FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
