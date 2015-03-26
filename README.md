@@ -17,7 +17,7 @@ A support library for WKWebView.
 ``` swift
 override public func viewDidLoad() {
     super.viewDidLoad()
-    let UIDelegate = WKUIDelegatePlus(self)
+    UIDelegate = WKUIDelegatePlus(self)
     webView.UIDelegate = UIDelegate
 }
 ```
