@@ -4,11 +4,13 @@ import WebKit
 public class WebViewObserver: NSObject {
     let webView: WKWebView
     private let context = UnsafeMutablePointer<Void>()
-    private let observableProperties = ["title", "URL", "estimatedProgress", "hasOnlySecureContent", "loading"]
+    private let observableProperties = ["title", "URL", "estimatedProgress", "canGoBack", "canGoForward", "hasOnlySecureContent", "loading"]
 
     public var onTitleChanged: String? -> Void = { _ in }
     public var onURLChanged: NSURL? -> Void = { _ in }
     public var onProgressChanged: Double -> Void = { _ in }
+    public var onCanGoBackChanged: Bool -> Void = { _ in }
+    public var onCanGoForwardChanged: Bool -> Void = { _ in }
     public var onHasOnlySecureContentChanged: Bool -> Void = { _ in }
     public var onLoadingStatusChanged: Bool -> Void = { _ in }
 
@@ -41,6 +43,8 @@ public class WebViewObserver: NSObject {
         case "title": onTitleChanged(webView.title)
         case "URL": onURLChanged(webView.URL)
         case "estimatedProgress": onProgressChanged(webView.estimatedProgress)
+        case "canGoBack": onCanGoBackChanged(webView.canGoBack)
+        case "canGoForward": onCanGoForwardChanged(webView.canGoForward)
         case "hasOnlySecureContent": onHasOnlySecureContentChanged(webView.hasOnlySecureContent)
         case "loading": onLoadingStatusChanged(webView.loading)
         default: ()
