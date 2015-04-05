@@ -29,8 +29,8 @@ It is funtastic that `WKWebView` has key-value observing compliant properties, b
 lazy var observer: WebViewObserver = WebViewObserver(self.webView)
 override public func viewDidLoad() {
     super.viewDidLoad()
-    observer.onTitleChanged = { self.title = $0 }
-    observing.onProgressChanged = { self.progressbar.progress = $0 }
+    observer.onTitleChanged = { [weak self] in self?.title = $0 }
+    observing.onProgressChanged = { [weak self] in self?.progressbar.progress = $0 }
 }
 ```
 

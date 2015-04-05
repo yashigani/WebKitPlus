@@ -1,0 +1,13 @@
+machine:
+  environment:
+    LC_CTYPE: en_US.UTF-8
+
+dependencies:
+  override:
+    - sudo gem install cocoapods
+    - sudo gem install xcpretty
+
+test:
+  override:
+    - pod lib lint
+    - set -o pipefail && xcodebuild build -scheme WebKitPlus-iOS -sdk iphonesimulator | xcpretty -c

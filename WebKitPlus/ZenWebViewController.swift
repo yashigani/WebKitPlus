@@ -28,11 +28,11 @@ public class ZenWebViewController: UIViewController {
     // MARK: - IBAction
 
     @IBAction func goBack(_: AnyObject?) {
-        if webView.canGoBack { webView.goBack() }
+        webView.goBack()
     }
 
     @IBAction func goForward(_: AnyObject?) {
-        if webView.canGoForward { webView.goForward() }
+        webView.goForward()
     }
 
     @IBAction func reload(_: AnyObject?) {
