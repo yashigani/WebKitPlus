@@ -10,4 +10,4 @@ dependencies:
 test:
   override:
     - pod lib lint
-    - set -o pipefail && xcodebuild build -scheme DemoApp -sdk iphonesimulator | xcpretty -c
+    - set -o pipefail && xcodebuild build -scheme WebKitPlus-iOS -sdk iphonesimulator | xcpretty -c
