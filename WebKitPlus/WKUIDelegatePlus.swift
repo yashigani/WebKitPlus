@@ -55,7 +55,7 @@ extension WKUIDelegatePlus: WKUIDelegate {
             completionHandler(nil)
         })
         alert.addAction(UIAlertAction(title: localizedString("OK"), style: .Default) { _ in
-            let textField = (alert.textFields as [UITextField]).first!
+            let textField = (alert.textFields as! [UITextField]).first!
             completionHandler(textField.text)
         })
         runJavaScriptAlert(alert, frame)

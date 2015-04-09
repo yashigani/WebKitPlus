@@ -14,7 +14,7 @@ public func authenticationAlert(challenge: NSURLAuthenticationChallenge, complet
             completionHandler(.CancelAuthenticationChallenge, nil)
         })
         alert.addAction(UIAlertAction(title: localizedString("OK"), style: .Default) { _ in
-            let textFields = alert.textFields as [UITextField]
+            let textFields = alert.textFields as! [UITextField]
             let credential = NSURLCredential(user: textFields[0].text, password: textFields[1].text, persistence: .ForSession)
             completionHandler(.UseCredential, credential)
         })
