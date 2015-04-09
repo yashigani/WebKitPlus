@@ -8,15 +8,6 @@ public class ZenWebViewController: UIViewController {
     public lazy var UIDelegate: WKUIDelegatePlus = WKUIDelegatePlus(self)
     public lazy var observer: WebViewObserver = WebViewObserver(self.webView)
 
-    init(_ configuration: WKWebViewConfiguration) {
-        super.init()
-        self.configuration = configuration
-    }
-
-    required public init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
     override public func loadView() {
         super.loadView()
         let autoresizingMask: UIViewAutoresizing = .FlexibleWidth | .FlexibleHeight
