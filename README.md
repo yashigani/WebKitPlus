@@ -30,7 +30,7 @@ lazy var observer: WebViewObserver = WebViewObserver(self.webView)
 override public func viewDidLoad() {
     super.viewDidLoad()
     observer.onTitleChanged = { [weak self] in self?.title = $0 }
-    observing.onProgressChanged = { [weak self] in self?.progressbar.progress = $0 }
+    observer.onProgressChanged = { [weak self] in self?.progressbar.progress = $0 }
 }
 ```
 
