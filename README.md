@@ -35,12 +35,12 @@ override public func viewDidLoad() {
 ```
 
 ### Authentication in navigation
-`authenticationAlert` function create `UIAlertController` for input informations of authenticcation.
+`alertForAuthentication` function create `UIAlertController` for input informations of authenticcation.
 
 ``` swift
 /// in `WKWebNavigationDelegate` object
 func webView(webView: WKWebView, didReceiveAuthenticationChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) {
-    let alert = authenticationAlert(challenge, completionHandler)
+    let alert = alertForAuthentication(challenge, completionHandler)
     presentViewController(alert, animated: true, completion: nil)
 }
 ```

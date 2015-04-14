@@ -1,6 +1,6 @@
 import UIKit
 
-public func authenticationAlert(challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) -> UIAlertController {
+public func alertForAuthentication(challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) -> UIAlertController {
     let space = challenge.protectionSpace
     let alert = UIAlertController(title: "\(space.`protocol`!)://\(space.host):\(space.port)", message: space.realm, preferredStyle: .Alert)
     alert.addTextFieldWithConfigurationHandler {
@@ -21,7 +21,7 @@ public func authenticationAlert(challenge: NSURLAuthenticationChallenge, complet
     return alert
 }
 
-public func navigationFailedAlert(error: NSError) -> UIAlertController {
+public func alertForNavigationFailed(error: NSError) -> UIAlertController {
     let title = error.userInfo?[NSURLErrorFailingURLStringErrorKey] as? String
     let message = error.localizedDescription
     let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
