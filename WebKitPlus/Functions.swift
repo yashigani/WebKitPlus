@@ -21,6 +21,14 @@ public func authenticationAlert(challenge: NSURLAuthenticationChallenge, complet
     return alert
 }
 
+public func navigationFailedAlert(error: NSError) -> UIAlertController {
+    let title = error.userInfo?[NSURLErrorFailingURLStringErrorKey] as? String
+    let message = error.localizedDescription
+    let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+    alert.addAction(UIAlertAction(title: localizedString("OK"), style: .Default) { _ in })
+    return alert
+}
+
 func localizedString(key: String) -> String {
     let bundle = NSBundle(forClass: WKUIDelegatePlus.self)
     return bundle.localizedStringForKey(key, value: key, table: nil)
