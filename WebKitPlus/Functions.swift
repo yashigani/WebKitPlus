@@ -21,7 +21,11 @@ public func alertForAuthentication(challenge: NSURLAuthenticationChallenge, comp
     return alert
 }
 
-public func alertForNavigationFailed(error: NSError) -> UIAlertController {
+public func alertForNavigationFailed(error: NSError) -> UIAlertController? {
+    if error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled { return nil }
+    // Ignore WebKitErrorFrameLoadInterruptedByPolicyChange
+    if error.domain == "WebKitErrorDomain" && error.code == 102 { return nil }
+
     let title = error.userInfo?[NSURLErrorFailingURLStringErrorKey] as? String
     let message = error.localizedDescription
     let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
