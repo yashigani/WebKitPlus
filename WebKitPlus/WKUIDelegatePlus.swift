@@ -2,17 +2,13 @@ import UIKit
 import WebKit
 
 public class WKUIDelegatePlus: NSObject {
-    public typealias WebViewCreator = (WKWebView, WKWebViewConfiguration, WKNavigationAction, WKWindowFeatures) -> WKWebView?
-    public typealias AlertCreator = (UIAlertController, WKFrameInfo) -> Void
-
-    public var createNewWebView: WebViewCreator = { _, _, _, _ in nil }
-    public var runJavaScriptAlert: AlertCreator = { _, _ in }
+    public var createNewWebView: (WKWebView, WKWebViewConfiguration, WKNavigationAction, WKWindowFeatures) -> WKWebView? = { _, _, _, _ in nil }
+    public var runJavaScriptAlert: (UIAlertController, WKFrameInfo) -> Void = { _, _ in }
 
     public init(_ viewController: UIViewController) {
         weak var vc = viewController
         runJavaScriptAlert = { alert, _ in
             vc?.presentViewController(alert, animated: true, completion: nil)
-            return
         }
     }
     
