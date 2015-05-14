@@ -1,6 +1,6 @@
 import UIKit
 
-public func authenticationAlert(challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) -> UIAlertController {
+public func alertForAuthentication(challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) -> UIAlertController {
     let space = challenge.protectionSpace
     let alert = UIAlertController(title: "\(space.`protocol`!)://\(space.host):\(space.port)", message: space.realm, preferredStyle: .Alert)
     alert.addTextFieldWithConfigurationHandler {
@@ -18,6 +18,18 @@ public func authenticationAlert(challenge: NSURLAuthenticationChallenge, complet
             let credential = NSURLCredential(user: textFields[0].text, password: textFields[1].text, persistence: .ForSession)
             completionHandler(.UseCredential, credential)
         })
+    return alert
+}
+
+public func alertForNavigationFailed(error: NSError) -> UIAlertController? {
+    if error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled { return nil }
+    // Ignore WebKitErrorFrameLoadInterruptedByPolicyChange
+    if error.domain == "WebKitErrorDomain" && error.code == 102 { return nil }
+
+    let title = error.userInfo?[NSURLErrorFailingURLStringErrorKey] as? String
+    let message = error.localizedDescription
+    let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+    alert.addAction(UIAlertAction(title: localizedString("OK"), style: .Default) { _ in })
     return alert
 }
 

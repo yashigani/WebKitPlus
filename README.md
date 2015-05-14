@@ -30,17 +30,17 @@ lazy var observer: WebViewObserver = WebViewObserver(self.webView)
 override public func viewDidLoad() {
     super.viewDidLoad()
     observer.onTitleChanged = { [weak self] in self?.title = $0 }
-    observing.onProgressChanged = { [weak self] in self?.progressbar.progress = $0 }
+    observer.onProgressChanged = { [weak self] in self?.progressbar.progress = $0 }
 }
 ```
 
 ### Authentication in navigation
-`authenticationAlert` function create `UIAlertController` for input informations of authenticcation.
+`alertForAuthentication` function create `UIAlertController` for input informations of authenticcation.
 
 ``` swift
 /// in `WKWebNavigationDelegate` object
 func webView(webView: WKWebView, didReceiveAuthenticationChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) {
-    let alert = authenticationAlert(challenge, completionHandler)
+    let alert = alertForAuthentication(challenge, completionHandler)
     presentViewController(alert, animated: true, completion: nil)
 }
 ```
