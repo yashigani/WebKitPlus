@@ -14,8 +14,8 @@ public func alertForAuthentication(challenge: NSURLAuthenticationChallenge, comp
             completionHandler(.CancelAuthenticationChallenge, nil)
         })
         alert.addAction(UIAlertAction(title: localizedString("OK"), style: .Default) { _ in
-            let textFields = alert.textFields as! [UITextField]
-            let credential = NSURLCredential(user: textFields[0].text, password: textFields[1].text, persistence: .ForSession)
+            let textFields = alert.textFields!
+            let credential = NSURLCredential(user: textFields[0].text!, password: textFields[1].text!, persistence: .ForSession)
             completionHandler(.UseCredential, credential)
         })
     return alert
@@ -26,7 +26,7 @@ public func alertForNavigationFailed(error: NSError) -> UIAlertController? {
     // Ignore WebKitErrorFrameLoadInterruptedByPolicyChange
     if error.domain == "WebKitErrorDomain" && error.code == 102 { return nil }
 
-    let title = error.userInfo?[NSURLErrorFailingURLStringErrorKey] as? String
+    let title = error.userInfo[NSURLErrorFailingURLStringErrorKey] as? String
     let message = error.localizedDescription
     let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
     alert.addAction(UIAlertAction(title: localizedString("OK"), style: .Default) { _ in })

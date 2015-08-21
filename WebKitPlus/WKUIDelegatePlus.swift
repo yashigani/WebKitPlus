@@ -44,14 +44,14 @@ extension WKUIDelegatePlus: WKUIDelegate {
         runJavaScriptAlert(alert, frame)
     }
 
-    public func webView(webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: (String!) -> Void) {
+    public func webView(webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: (String?) -> Void) {
         let alert = UIAlertController(title: nil, message: prompt, preferredStyle: .Alert)
         alert.addTextFieldWithConfigurationHandler { $0.text = defaultText }
         alert.addAction(UIAlertAction(title: localizedString("Cancel"), style: .Cancel) { _ in
             completionHandler(nil)
         })
         alert.addAction(UIAlertAction(title: localizedString("OK"), style: .Default) { _ in
-            let textField = (alert.textFields as! [UITextField]).first!
+            let textField = alert.textFields!.first!
             completionHandler(textField.text)
         })
         runJavaScriptAlert(alert, frame)
