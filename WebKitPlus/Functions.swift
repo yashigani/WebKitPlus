@@ -1,12 +1,10 @@
 import UIKit
 
+/// Return UIAlertController? that input form for user credential if needed.
 public func alertForAuthentication(challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) -> UIAlertController? {
     let space = challenge.protectionSpace
     let alert: UIAlertController?
-    if space.authenticationMethod == NSURLAuthenticationMethodServerTrust {
-        // ignore Server Trust.
-        alert = nil
-    } else {
+    if space.isUserCredential {
         alert = UIAlertController(title: "\(space.`protocol`!)://\(space.host):\(space.port)", message: space.realm, preferredStyle: .Alert)
         alert?.addTextFieldWithConfigurationHandler {
             $0.placeholder = localizedString("user")
@@ -23,8 +21,24 @@ public func alertForAuthentication(challenge: NSURLAuthenticationChallenge, comp
             let credential = NSURLCredential(user: textFields[0].text!, password: textFields[1].text!, persistence: .ForSession)
             completionHandler(.UseCredential, credential)
         })
+    } else {
+        alert = nil
     }
     return alert
+}
+
+extension NSURLProtectionSpace {
+
+    private var isUserCredential: Bool {
+        if let p = `protocol` where p == "http" && authenticationMethod == NSURLAuthenticationMethodDefault {
+            return true
+        } else if authenticationMethod == NSURLAuthenticationMethodHTTPBasic || authenticationMethod == NSURLAuthenticationMethodHTTPDigest {
+            return true
+        } else {
+            return false
+        }
+    }
+
 }
 
 public func alertForNavigationFailed(error: NSError) -> UIAlertController? {

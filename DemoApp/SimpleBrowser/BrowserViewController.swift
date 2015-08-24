@@ -72,7 +72,7 @@ extension BrowserViewController: WKNavigationDelegate {
         if let alert = alertForAuthentication(challenge, completionHandler) {
             presentViewController(alert, animated: true, completion: nil)
         } else {
-            completionHandler(.RejectProtectionSpace, nil)
+            completionHandler(.PerformDefaultHandling, nil)
         }
     }
 
