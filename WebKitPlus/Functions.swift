@@ -1,6 +1,6 @@
 import UIKit
 
-public func alertForAuthentication(challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) -> UIAlertController? {
+public func alertForAuthentication(challenge: NSURLAuthenticationChallenge, _ completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) -> UIAlertController? {
     let space = challenge.protectionSpace
     let alert: UIAlertController?
     if space.authenticationMethod == NSURLAuthenticationMethodServerTrust {
@@ -19,7 +19,7 @@ public func alertForAuthentication(challenge: NSURLAuthenticationChallenge, comp
             completionHandler(.CancelAuthenticationChallenge, nil)
         })
         alert?.addAction(UIAlertAction(title: localizedString("OK"), style: .Default) { _ in
-            let textFields = alert!.textFields as! [UITextField]
+            let textFields = alert!.textFields!
             let credential = NSURLCredential(user: textFields[0].text!, password: textFields[1].text!, persistence: .ForSession)
             completionHandler(.UseCredential, credential)
         })
