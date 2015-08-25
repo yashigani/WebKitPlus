@@ -26,7 +26,7 @@ class BrowserViewController: ZenWebViewController {
         navigationController?.hidesBarsOnSwipe = true
         navigationController?.barHideOnSwipeGestureRecognizer.addTarget(self, action: "updateStatusBar:")
 
-        let request = NSURLRequest(URL: NSURL(string: "http://apple.com")!)
+        let request = NSURLRequest(URL: NSURL(string: "https://www.apple.com")!)
         webView.loadRequest(request)
     }
 
@@ -69,8 +69,11 @@ class BrowserViewController: ZenWebViewController {
 extension BrowserViewController: WKNavigationDelegate {
 
     func webView(webView: WKWebView, didReceiveAuthenticationChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) {
-        let alert = authenticationAlert(challenge, completionHandler)
-        presentViewController(alert, animated: true, completion: nil)
+        if let alert = alertForAuthentication(challenge, completionHandler) {
+            presentViewController(alert, animated: true, completion: nil)
+        } else {
+            completionHandler(.PerformDefaultHandling, nil)
+        }
     }
 
 }
