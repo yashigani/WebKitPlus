@@ -39,8 +39,12 @@ override public func viewDidLoad() {
 
 ``` swift
 /// in `WKWebNavigationDelegate` object
-func webView(webView: WKWebView, didReceiveAuthenticationChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) {
-    let alert = alertForAuthentication(challenge, completionHandler)
+func webView(webView: WKWebView, didReceiveAuthenticationChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
+    guard let alert = alertForAuthentication(challenge, completionHandler) else {
+        // Should call `completionHandler` if `alertForAuthentication` return `.None`.
+        completionHandler(.PerformDefaultHandling, nil)
+        return
+    }
     presentViewController(alert, animated: true, completion: nil)
 }
 ```

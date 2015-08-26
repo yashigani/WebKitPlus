@@ -1,24 +1,44 @@
 import UIKit
 
-public func alertForAuthentication(challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) -> UIAlertController {
+/// Return UIAlertController? that input form for user credential if needed.
+public func alertForAuthentication(challenge: NSURLAuthenticationChallenge, _ completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) -> UIAlertController? {
     let space = challenge.protectionSpace
-    let alert = UIAlertController(title: "\(space.`protocol`!)://\(space.host):\(space.port)", message: space.realm, preferredStyle: .Alert)
-    alert.addTextFieldWithConfigurationHandler {
-        $0.placeholder = localizedString("user")
-    }
-    alert.addTextFieldWithConfigurationHandler {
-        $0.placeholder = localizedString("password")
-        $0.secureTextEntry = true
-    }
-        alert.addAction(UIAlertAction(title: localizedString("Cancel"), style: .Cancel) { _ in
+    let alert: UIAlertController?
+    if space.isUserCredential {
+        alert = UIAlertController(title: "\(space.`protocol`!)://\(space.host):\(space.port)", message: space.realm, preferredStyle: .Alert)
+        alert?.addTextFieldWithConfigurationHandler {
+            $0.placeholder = localizedString("user")
+        }
+        alert?.addTextFieldWithConfigurationHandler {
+            $0.placeholder = localizedString("password")
+            $0.secureTextEntry = true
+        }
+        alert?.addAction(UIAlertAction(title: localizedString("Cancel"), style: .Cancel) { _ in
             completionHandler(.CancelAuthenticationChallenge, nil)
         })
-        alert.addAction(UIAlertAction(title: localizedString("OK"), style: .Default) { _ in
-            let textFields = alert.textFields!
+        alert?.addAction(UIAlertAction(title: localizedString("OK"), style: .Default) { _ in
+            let textFields = alert!.textFields!
             let credential = NSURLCredential(user: textFields[0].text!, password: textFields[1].text!, persistence: .ForSession)
             completionHandler(.UseCredential, credential)
         })
+    } else {
+        alert = nil
+    }
     return alert
+}
+
+extension NSURLProtectionSpace {
+
+    private var isUserCredential: Bool {
+        if let p = `protocol` where p == "http" && authenticationMethod == NSURLAuthenticationMethodDefault {
+            return true
+        } else if authenticationMethod == NSURLAuthenticationMethodHTTPBasic || authenticationMethod == NSURLAuthenticationMethodHTTPDigest {
+            return true
+        } else {
+            return false
+        }
+    }
+
 }
 
 public func alertForNavigationFailed(error: NSError) -> UIAlertController? {
