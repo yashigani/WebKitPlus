@@ -68,12 +68,13 @@ class BrowserViewController: ZenWebViewController {
 
 extension BrowserViewController: WKNavigationDelegate {
 
-    func webView(webView: WKWebView, didReceiveAuthenticationChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) {
-        if let alert = alertForAuthentication(challenge, completionHandler) {
-            presentViewController(alert, animated: true, completion: nil)
-        } else {
+    func webView(webView: WKWebView, didReceiveAuthenticationChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
+        guard let alert = alertForAuthentication(challenge, completionHandler) else {
+            // Should call `completionHandler` if `alertForAuthentication` return `.None`.
             completionHandler(.PerformDefaultHandling, nil)
+            return
         }
+        presentViewController(alert, animated: true, completion: nil)
     }
 
 }

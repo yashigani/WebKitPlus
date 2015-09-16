@@ -10,7 +10,7 @@ public class ZenWebViewController: UIViewController {
 
     override public func loadView() {
         super.loadView()
-        let autoresizingMask: UIViewAutoresizing = .FlexibleWidth | .FlexibleHeight
+        let autoresizingMask: UIViewAutoresizing = [.FlexibleWidth, .FlexibleHeight]
         webView.autoresizingMask = autoresizingMask
         webView.UIDelegate = UIDelegate
         view.insertSubview(webView, atIndex: 0)

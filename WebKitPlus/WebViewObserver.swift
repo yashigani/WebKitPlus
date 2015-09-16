@@ -36,17 +36,17 @@ public class WebViewObserver: NSObject {
 
     // MARK: - Key Value Observation
 
-    public override func observeValueForKeyPath(keyPath: String, ofObject: AnyObject, change: [NSObject: AnyObject], context: UnsafeMutablePointer<Void>) {
+    public override func observeValueForKeyPath(keyPath: String?, ofObject: AnyObject?, change: [String: AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if context != self.context { return }
 
         switch keyPath {
-        case "title": onTitleChanged(webView.title)
-        case "URL": onURLChanged(webView.URL)
-        case "estimatedProgress": onProgressChanged(webView.estimatedProgress)
-        case "canGoBack": onCanGoBackChanged(webView.canGoBack)
-        case "canGoForward": onCanGoForwardChanged(webView.canGoForward)
-        case "hasOnlySecureContent": onHasOnlySecureContentChanged(webView.hasOnlySecureContent)
-        case "loading": onLoadingStatusChanged(webView.loading)
+        case "title"?: onTitleChanged(webView.title)
+        case "URL"?: onURLChanged(webView.URL)
+        case "estimatedProgress"?: onProgressChanged(webView.estimatedProgress)
+        case "canGoBack"?: onCanGoBackChanged(webView.canGoBack)
+        case "canGoForward"?: onCanGoForwardChanged(webView.canGoForward)
+        case "hasOnlySecureContent"?: onHasOnlySecureContentChanged(webView.hasOnlySecureContent)
+        case "loading"?: onLoadingStatusChanged(webView.loading)
         default: ()
         }
     }
