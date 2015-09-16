@@ -62,8 +62,12 @@ public class WebViewObserver: NSObject {
     // MARK: - Key Value Observation
 
     public override func observeValueForKeyPath(keyPath: String?, ofObject: AnyObject?, change: [String: AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if context != self.context { return }
-        keyPath.flatMap(KeyPath.init).map(dispatchObserver)
+        guard context == self.context else {
+            return
+        }
+        if let keyPath = keyPath.flatMap(KeyPath.init) {
+            dispatchObserver(keyPath)
+        }
     }
 
 }
