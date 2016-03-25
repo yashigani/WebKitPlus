@@ -2,7 +2,7 @@ machine:
   environment:
     LC_CTYPE: en_US.UTF-8
   xcode:
-    version: "7.0"
+    version: "7.3"
 
 dependencies:
   override:
