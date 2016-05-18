@@ -26,6 +26,11 @@ extension WKUIDelegatePlus: WKUIDelegate {
     }
 
     public func webView(webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: () -> Void) {
+        guard webView.window != nil else {
+            completionHandler()
+            return
+        }
+
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: localizedString("OK"), style: .Default) { _ in
             completionHandler()
@@ -34,6 +39,11 @@ extension WKUIDelegatePlus: WKUIDelegate {
     }
 
     public func webView(webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: (Bool) -> Void) {
+        guard webView.window != nil else {
+            completionHandler(false)
+            return
+        }
+
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: localizedString("Cancel"), style: .Cancel) { _ in
             completionHandler(false)
@@ -45,6 +55,11 @@ extension WKUIDelegatePlus: WKUIDelegate {
     }
 
     public func webView(webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: (String?) -> Void) {
+        guard webView.window != nil else {
+            completionHandler(nil)
+            return
+        }
+
         let alert = UIAlertController(title: nil, message: prompt, preferredStyle: .Alert)
         alert.addTextFieldWithConfigurationHandler { $0.text = defaultText }
         alert.addAction(UIAlertAction(title: localizedString("Cancel"), style: .Cancel) { _ in
