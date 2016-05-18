@@ -12,7 +12,7 @@ public class WebViewObserver: NSObject {
         case Loading = "loading"
     }
     let webView: WKWebView
-    private let context = UnsafeMutablePointer<Void>()
+    private var context: UInt8 = 0
     private let keyPaths: [KeyPath] = [
         .Title, .URL, .EstimatedProgress,
         .CanGoBack, .CanGoForward,
@@ -37,13 +37,13 @@ public class WebViewObserver: NSObject {
 
     private func observeProperties() {
         for k in keyPaths {
-            webView.addObserver(self, forKeyPath: k.rawValue, options: .New, context: context)
+            webView.addObserver(self, forKeyPath: k.rawValue, options: .New, context: &context)
         }
     }
 
     deinit {
         for k in keyPaths {
-            webView.removeObserver(self, forKeyPath: k.rawValue, context: context)
+            webView.removeObserver(self, forKeyPath: k.rawValue, context: &context)
         }
     }
 
@@ -62,7 +62,7 @@ public class WebViewObserver: NSObject {
     // MARK: - Key Value Observation
 
     public override func observeValueForKeyPath(keyPath: String?, ofObject: AnyObject?, change: [String: AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        guard context == self.context else {
+        guard context == &self.context else {
             return
         }
         if let keyPath = keyPath.flatMap(KeyPath.init) {
