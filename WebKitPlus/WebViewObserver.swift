@@ -3,20 +3,20 @@ import WebKit
 
 open class WebViewObserver: NSObject {
     enum KeyPath: String {
-        case Title = "title"
-        case URL = "URL"
-        case EstimatedProgress = "estimatedProgress"
-        case CanGoBack = "canGoBack"
-        case CanGoForward = "canGoForward"
-        case HasOnlySecureContent = "hasOnlySecureContent"
-        case Loading = "loading"
+        case title
+        case url
+        case estimatedProgress
+        case canGoBack
+        case canGoForward
+        case hasOnlySecureContent
+        case loading
     }
     let webView: WKWebView
     fileprivate var context: UInt8 = 0
     fileprivate let keyPaths: [KeyPath] = [
-        .Title, .URL, .EstimatedProgress,
-        .CanGoBack, .CanGoForward,
-        .HasOnlySecureContent, .Loading,
+        .title, .url, .estimatedProgress,
+        .canGoBack, .canGoForward,
+        .hasOnlySecureContent, .loading,
     ]
 
     open var onTitleChanged: (String?) -> Void = { _ in }
@@ -49,13 +49,13 @@ open class WebViewObserver: NSObject {
 
     fileprivate func dispatchObserver(_ keyPath: KeyPath) {
         switch keyPath {
-        case .Title: onTitleChanged(webView.title)
-        case .URL: onURLChanged(webView.url)
-        case .EstimatedProgress: onProgressChanged(webView.estimatedProgress)
-        case .CanGoBack: onCanGoBackChanged(webView.canGoBack)
-        case .CanGoForward: onCanGoForwardChanged(webView.canGoForward)
-        case .HasOnlySecureContent: onHasOnlySecureContentChanged(webView.hasOnlySecureContent)
-        case .Loading: onLoadingStatusChanged(webView.isLoading)
+        case .title: onTitleChanged(webView.title)
+        case .url: onURLChanged(webView.url)
+        case .estimatedProgress: onProgressChanged(webView.estimatedProgress)
+        case .canGoBack: onCanGoBackChanged(webView.canGoBack)
+        case .canGoForward: onCanGoForwardChanged(webView.canGoForward)
+        case .hasOnlySecureContent: onHasOnlySecureContentChanged(webView.hasOnlySecureContent)
+        case .loading: onLoadingStatusChanged(webView.isLoading)
         }
     }
 
