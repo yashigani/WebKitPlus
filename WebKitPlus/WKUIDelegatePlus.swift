@@ -1,14 +1,14 @@
 import UIKit
 import WebKit
 
-public class WKUIDelegatePlus: NSObject {
-    public var createNewWebView: (WKWebView, WKWebViewConfiguration, WKNavigationAction, WKWindowFeatures) -> WKWebView? = { _, _, _, _ in nil }
-    public var runJavaScriptAlert: (UIAlertController, WKFrameInfo) -> Void = { _, _ in }
+open class WKUIDelegatePlus: NSObject {
+    open var createNewWebView: (WKWebView, WKWebViewConfiguration, WKNavigationAction, WKWindowFeatures) -> WKWebView? = { _, _, _, _ in nil }
+    open var runJavaScriptAlert: (UIAlertController, WKFrameInfo) -> Void = { _, _ in }
 
     public init(_ viewController: UIViewController) {
         weak var vc = viewController
         runJavaScriptAlert = { alert, _ in
-            vc?.presentViewController(alert, animated: true, completion: nil)
+            vc?.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -16,56 +16,56 @@ public class WKUIDelegatePlus: NSObject {
 
 extension WKUIDelegatePlus: WKUIDelegate {
 
-    public func webView(webView: WKWebView, createWebViewWithConfiguration configuration: WKWebViewConfiguration, forNavigationAction navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+    public func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
         if let webView = createNewWebView(webView, configuration, navigationAction, windowFeatures) {
             return webView
         } else {
-            webView.loadRequest(navigationAction.request)
+            webView.load(navigationAction.request)
             return nil
         }
     }
 
-    public func webView(webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: () -> Void) {
+    public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
         guard webView.window != nil else {
             completionHandler()
             return
         }
 
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: localizedString("OK"), style: .Default) { _ in
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: localizedString("OK"), style: .default) { _ in
             completionHandler()
         })
         runJavaScriptAlert(alert, frame)
     }
 
-    public func webView(webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: (Bool) -> Void) {
+    public func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
         guard webView.window != nil else {
             completionHandler(false)
             return
         }
 
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: localizedString("Cancel"), style: .Cancel) { _ in
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: localizedString("Cancel"), style: .cancel) { _ in
             completionHandler(false)
         })
-        alert.addAction(UIAlertAction(title: localizedString("OK"), style: .Default) { _ in
+        alert.addAction(UIAlertAction(title: localizedString("OK"), style: .default) { _ in
             completionHandler(true)
         })
         runJavaScriptAlert(alert, frame)
     }
 
-    public func webView(webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: (String?) -> Void) {
+    public func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (String?) -> Void) {
         guard webView.window != nil else {
             completionHandler(nil)
             return
         }
 
-        let alert = UIAlertController(title: nil, message: prompt, preferredStyle: .Alert)
-        alert.addTextFieldWithConfigurationHandler { $0.text = defaultText }
-        alert.addAction(UIAlertAction(title: localizedString("Cancel"), style: .Cancel) { _ in
+        let alert = UIAlertController(title: nil, message: prompt, preferredStyle: .alert)
+        alert.addTextField { $0.text = defaultText }
+        alert.addAction(UIAlertAction(title: localizedString("Cancel"), style: .cancel) { _ in
             completionHandler(nil)
         })
-        alert.addAction(UIAlertAction(title: localizedString("OK"), style: .Default) { _ in
+        alert.addAction(UIAlertAction(title: localizedString("OK"), style: .default) { _ in
             let textField = alert.textFields!.first!
             completionHandler(textField.text)
         })

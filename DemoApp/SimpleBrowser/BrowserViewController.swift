@@ -24,33 +24,33 @@ class BrowserViewController: ZenWebViewController {
         // hide navigation bar
         navigationController?.hidesBarsOnTap = true
         navigationController?.hidesBarsOnSwipe = true
-        navigationController?.barHideOnSwipeGestureRecognizer.addTarget(self, action: "updateStatusBar:")
+        navigationController?.barHideOnSwipeGestureRecognizer.addTarget(self, action: #selector(BrowserViewController.updateStatusBar(_:)))
 
-        let request = NSURLRequest(URL: NSURL(string: "https://www.apple.com")!)
-        webView.loadRequest(request)
+        let request = URLRequest(url: URL(string: "https://www.apple.com")!)
+        webView.load(request)
     }
 
-    override func prefersStatusBarHidden() -> Bool { return navigationController?.navigationBarHidden ?? false }
+//    override func prefersStatusBarHidden() -> Bool { return navigationController?.isNavigationBarHidden ?? false }
 
-    override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation { return .Slide }
+//    override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation { return .slide }
 
     // MARK: - Update UI
 
-    func updateTitle(newTitle: String?) {
+    func updateTitle(_ newTitle: String?) {
         title = newTitle
     }
 
-    func updateProgress(progress: Double) {
+    func updateProgress(_ progress: Double) {
         progressBar.progress = Float(progress)
     }
 
-    func updateStatus(loading: Bool) {
-        progressBar.hidden = !loading
-        toolbarItems?.removeAtIndex(5)
-        toolbarItems?.insert(loading ? stopItem : reloadItem, atIndex: 5)
-        goBackItem.enabled = webView.canGoBack
-        goForwardItem.enabled = webView.canGoForward
-        shareItem.enabled = !loading
+    func updateStatus(_ loading: Bool) {
+        progressBar.isHidden = !loading
+        toolbarItems?.remove(at: 5)
+        toolbarItems?.insert(loading ? stopItem : reloadItem, at: 5)
+        goBackItem.isEnabled = webView.canGoBack
+        goForwardItem.isEnabled = webView.canGoForward
+        shareItem.isEnabled = !loading
     }
 
     func updateStatusBar(_: AnyObject?) {
@@ -60,21 +60,21 @@ class BrowserViewController: ZenWebViewController {
     // MARK: - Actions
 
     @IBAction func shareTapped(_: AnyObject?) {
-        let vc = UIActivityViewController(activityItems: [webView.URL!, webView.title!], applicationActivities: nil)
-        navigationController?.presentViewController(vc, animated: true, completion: nil)
+        let vc = UIActivityViewController(activityItems: [webView.url!, webView.title!], applicationActivities: nil)
+        navigationController?.present(vc, animated: true, completion: nil)
     }
 
 }
 
 extension BrowserViewController: WKNavigationDelegate {
 
-    func webView(webView: WKWebView, didReceiveAuthenticationChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
+    func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         guard let alert = alertForAuthentication(challenge, completionHandler) else {
             // Should call `completionHandler` if `alertForAuthentication` return `.None`.
-            completionHandler(.PerformDefaultHandling, nil)
+            completionHandler(.performDefaultHandling, nil)
             return
         }
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
 
 }

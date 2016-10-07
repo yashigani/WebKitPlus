@@ -2,22 +2,22 @@ import UIKit
 import WebKit
 
 /// Simple UIViewController with WKWebView
-public class ZenWebViewController: UIViewController {
-    public lazy var configuration: WKWebViewConfiguration = WKWebViewConfiguration()
-    public lazy var webView: WKWebView = WKWebView(frame: self.view.frame, configuration: self.configuration)
-    public lazy var UIDelegate: WKUIDelegatePlus = WKUIDelegatePlus(self)
-    public lazy var observer: WebViewObserver = WebViewObserver(self.webView)
+open class ZenWebViewController: UIViewController {
+    open lazy var configuration: WKWebViewConfiguration = WKWebViewConfiguration()
+    open lazy var webView: WKWebView = WKWebView(frame: self.view.frame, configuration: self.configuration)
+    open lazy var UIDelegate: WKUIDelegatePlus = WKUIDelegatePlus(self)
+    open lazy var observer: WebViewObserver = WebViewObserver(self.webView)
 
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         webView.translatesAutoresizingMaskIntoConstraints = false
-        webView.UIDelegate = UIDelegate
-        view.insertSubview(webView, atIndex: 0)
+        webView.uiDelegate = UIDelegate
+        view.insertSubview(webView, at: 0)
 
         let views = ["view": webView]
-        NSLayoutConstraint.activateConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[view]-0-|", options: [], metrics: nil, views: views) +
-            NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[view]-0-|", options: [], metrics: nil, views: views)
+        NSLayoutConstraint.activate(
+            NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[view]-0-|", options: [], metrics: nil, views: views) +
+            NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[view]-0-|", options: [], metrics: nil, views: views)
         )
     }
 
