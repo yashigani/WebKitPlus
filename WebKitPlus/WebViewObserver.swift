@@ -29,7 +29,7 @@ public class WebViewObserver: NSObject {
 
     // MARK: -
 
-    public init(_ webView: WKWebView) {
+    public init(obserbee webView: WKWebView) {
         self.webView = webView
         super.init()
         observeProperties()
@@ -69,6 +69,12 @@ public class WebViewObserver: NSObject {
             dispatchObserver(keyPath)
         }
     }
+
+}
+
+public extension WebViewObserver {
+    @available(*, unavailable, renamed: "init(obserbee:)")
+    public convenience init(_ webView: WKWebView) { fatalError() }
 
 }
 

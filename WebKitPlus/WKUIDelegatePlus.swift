@@ -5,7 +5,7 @@ public class WKUIDelegatePlus: NSObject {
     public var createNewWebView: (WKWebView, WKWebViewConfiguration, WKNavigationAction, WKWindowFeatures) -> WKWebView? = { _, _, _, _ in nil }
     public var runJavaScriptAlert: (UIAlertController, WKFrameInfo) -> Void = { _, _ in }
 
-    public init(_ viewController: UIViewController) {
+    public init(parentViewController viewController: UIViewController) {
         weak var vc = viewController
         runJavaScriptAlert = { alert, _ in
             vc?.present(alert, animated: true, completion: nil)
@@ -72,5 +72,10 @@ extension WKUIDelegatePlus: WKUIDelegate {
         runJavaScriptAlert(alert, frame)
     }
 
+}
+
+public extension WKUIDelegatePlus {
+    @available(*, unavailable, renamed: "init(parentViewController:)")
+    public convenience init(_ viewController: UIViewController) { fatalError() }
 }
 

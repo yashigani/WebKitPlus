@@ -5,8 +5,8 @@ import WebKit
 open class ZenWebViewController: UIViewController {
     public lazy var configuration: WKWebViewConfiguration = WKWebViewConfiguration()
     public lazy var webView: WKWebView = WKWebView(frame: self.view.frame, configuration: self.configuration)
-    public lazy var UIDelegate: WKUIDelegatePlus = WKUIDelegatePlus(self)
-    public lazy var observer: WebViewObserver = WebViewObserver(self.webView)
+    public lazy var UIDelegate: WKUIDelegatePlus = WKUIDelegatePlus(parentViewController: self)
+    public lazy var observer: WebViewObserver = WebViewObserver(obserbee: self.webView)
 
     override open func viewDidLoad() {
         super.viewDidLoad()
