@@ -1,7 +1,7 @@
 import UIKit
 import WebKit
 
-open class WebViewObserver: NSObject {
+public class WebViewObserver: NSObject {
     enum KeyPath: String {
         case title
         case url
@@ -12,20 +12,20 @@ open class WebViewObserver: NSObject {
         case loading
     }
     let webView: WKWebView
-    fileprivate var context: UInt8 = 0
-    fileprivate let keyPaths: [KeyPath] = [
+    private var context: UInt8 = 0
+    private let keyPaths: [KeyPath] = [
         .title, .url, .estimatedProgress,
         .canGoBack, .canGoForward,
         .hasOnlySecureContent, .loading,
     ]
 
-    open var onTitleChanged: (String?) -> Void = { _ in }
-    open var onURLChanged: (URL?) -> Void = { _ in }
-    open var onProgressChanged: (Double) -> Void = { _ in }
-    open var onCanGoBackChanged: (Bool) -> Void = { _ in }
-    open var onCanGoForwardChanged: (Bool) -> Void = { _ in }
-    open var onHasOnlySecureContentChanged: (Bool) -> Void = { _ in }
-    open var onLoadingStatusChanged: (Bool) -> Void = { _ in }
+    public var onTitleChanged: (String?) -> Void = { _ in }
+    public var onURLChanged: (URL?) -> Void = { _ in }
+    public var onProgressChanged: (Double) -> Void = { _ in }
+    public var onCanGoBackChanged: (Bool) -> Void = { _ in }
+    public var onCanGoForwardChanged: (Bool) -> Void = { _ in }
+    public var onHasOnlySecureContentChanged: (Bool) -> Void = { _ in }
+    public var onLoadingStatusChanged: (Bool) -> Void = { _ in }
 
     // MARK: -
 
@@ -35,7 +35,7 @@ open class WebViewObserver: NSObject {
         observeProperties()
     }
 
-    fileprivate func observeProperties() {
+    private func observeProperties() {
         for k in keyPaths {
             webView.addObserver(self, forKeyPath: k.rawValue, options: .new, context: &context)
         }
@@ -47,7 +47,7 @@ open class WebViewObserver: NSObject {
         }
     }
 
-    fileprivate func dispatchObserver(_ keyPath: KeyPath) {
+    private func dispatchObserver(_ keyPath: KeyPath) {
         switch keyPath {
         case .title: onTitleChanged(webView.title)
         case .url: onURLChanged(webView.url)
@@ -61,7 +61,7 @@ open class WebViewObserver: NSObject {
 
     // MARK: - Key Value Observation
 
-    open override func observeValue(forKeyPath keyPath: String?, of ofObject: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+    public override func observeValue(forKeyPath keyPath: String?, of ofObject: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         guard context == &self.context else {
             return
         }

@@ -3,10 +3,10 @@ import WebKit
 
 /// Simple UIViewController with WKWebView
 open class ZenWebViewController: UIViewController {
-    open lazy var configuration: WKWebViewConfiguration = WKWebViewConfiguration()
-    open lazy var webView: WKWebView = WKWebView(frame: self.view.frame, configuration: self.configuration)
-    open lazy var UIDelegate: WKUIDelegatePlus = WKUIDelegatePlus(self)
-    open lazy var observer: WebViewObserver = WebViewObserver(self.webView)
+    public lazy var configuration: WKWebViewConfiguration = WKWebViewConfiguration()
+    public lazy var webView: WKWebView = WKWebView(frame: self.view.frame, configuration: self.configuration)
+    public lazy var UIDelegate: WKUIDelegatePlus = WKUIDelegatePlus(self)
+    public lazy var observer: WebViewObserver = WebViewObserver(self.webView)
 
     override open func viewDidLoad() {
         super.viewDidLoad()
