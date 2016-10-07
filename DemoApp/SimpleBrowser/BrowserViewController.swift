@@ -9,6 +9,12 @@ class BrowserViewController: ZenWebViewController {
     @IBOutlet var reloadItem: UIBarButtonItem!
     @IBOutlet var stopItem: UIBarButtonItem!
     @IBOutlet var shareItem: UIBarButtonItem!
+    
+    override var prefersStatusBarHidden: Bool {
+        return navigationController?.isNavigationBarHidden ?? false
+    }
+
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation { return .slide }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +35,6 @@ class BrowserViewController: ZenWebViewController {
         let request = URLRequest(url: URL(string: "https://www.apple.com")!)
         webView.load(request)
     }
-
-//    override func prefersStatusBarHidden() -> Bool { return navigationController?.isNavigationBarHidden ?? false }
-
-//    override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation { return .slide }
 
     // MARK: - Update UI
 
