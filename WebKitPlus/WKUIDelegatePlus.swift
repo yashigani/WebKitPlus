@@ -32,7 +32,7 @@ extension WKUIDelegatePlus: WKUIDelegate {
         }
 
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: localizedString("OK"), style: .default) { _ in
+        alert.addAction(UIAlertAction(title: localizedString(for: "OK"), style: .default) { _ in
             completionHandler()
         })
         runJavaScriptAlert(alert, frame)
@@ -45,10 +45,10 @@ extension WKUIDelegatePlus: WKUIDelegate {
         }
 
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: localizedString("Cancel"), style: .cancel) { _ in
+        alert.addAction(UIAlertAction(title: localizedString(for: "Cancel"), style: .cancel) { _ in
             completionHandler(false)
         })
-        alert.addAction(UIAlertAction(title: localizedString("OK"), style: .default) { _ in
+        alert.addAction(UIAlertAction(title: localizedString(for: "OK"), style: .default) { _ in
             completionHandler(true)
         })
         runJavaScriptAlert(alert, frame)
@@ -62,10 +62,10 @@ extension WKUIDelegatePlus: WKUIDelegate {
 
         let alert = UIAlertController(title: nil, message: prompt, preferredStyle: .alert)
         alert.addTextField { $0.text = defaultText }
-        alert.addAction(UIAlertAction(title: localizedString("Cancel"), style: .cancel) { _ in
+        alert.addAction(UIAlertAction(title: localizedString(for: "Cancel"), style: .cancel) { _ in
             completionHandler(nil)
         })
-        alert.addAction(UIAlertAction(title: localizedString("OK"), style: .default) { _ in
+        alert.addAction(UIAlertAction(title: localizedString(for: "OK"), style: .default) { _ in
             let textField = alert.textFields!.first!
             completionHandler(textField.text)
         })
