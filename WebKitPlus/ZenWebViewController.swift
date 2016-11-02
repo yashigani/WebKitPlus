@@ -10,10 +10,15 @@ public class ZenWebViewController: UIViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-        let autoresizingMask: UIViewAutoresizing = [.FlexibleWidth, .FlexibleHeight]
-        webView.autoresizingMask = autoresizingMask
+        webView.translatesAutoresizingMaskIntoConstraints = false
         webView.UIDelegate = UIDelegate
         view.insertSubview(webView, atIndex: 0)
+
+        let views = ["view": webView]
+        NSLayoutConstraint.activateConstraints(
+            NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[view]-0-|", options: [], metrics: nil, views: views) +
+            NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[view]-0-|", options: [], metrics: nil, views: views)
+        )
     }
 
     // MARK: - IBAction
