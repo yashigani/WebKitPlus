@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name = "WebKitPlus"
-    s.version = "0.1.1"
+    s.version = "0.1.2"
     s.summary = "A support library for WKWebView."
 
     s.description = <<-DESC
