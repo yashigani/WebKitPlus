@@ -4,7 +4,7 @@ import WebKit
 public class WebViewObserver: NSObject {
     enum KeyPath: String {
         case title
-        case url
+        case url = "URL"
         case estimatedProgress
         case canGoBack
         case canGoForward
