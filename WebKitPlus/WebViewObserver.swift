@@ -3,33 +3,33 @@ import WebKit
 
 public class WebViewObserver: NSObject {
     enum KeyPath: String {
-        case Title = "title"
-        case URL = "URL"
-        case EstimatedProgress = "estimatedProgress"
-        case CanGoBack = "canGoBack"
-        case CanGoForward = "canGoForward"
-        case HasOnlySecureContent = "hasOnlySecureContent"
-        case Loading = "loading"
+        case title
+        case url = "URL"
+        case estimatedProgress
+        case canGoBack
+        case canGoForward
+        case hasOnlySecureContent
+        case loading
     }
     let webView: WKWebView
     private var context: UInt8 = 0
     private let keyPaths: [KeyPath] = [
-        .Title, .URL, .EstimatedProgress,
-        .CanGoBack, .CanGoForward,
-        .HasOnlySecureContent, .Loading,
+        .title, .url, .estimatedProgress,
+        .canGoBack, .canGoForward,
+        .hasOnlySecureContent, .loading,
     ]
 
-    public var onTitleChanged: String? -> Void = { _ in }
-    public var onURLChanged: NSURL? -> Void = { _ in }
-    public var onProgressChanged: Double -> Void = { _ in }
-    public var onCanGoBackChanged: Bool -> Void = { _ in }
-    public var onCanGoForwardChanged: Bool -> Void = { _ in }
-    public var onHasOnlySecureContentChanged: Bool -> Void = { _ in }
-    public var onLoadingStatusChanged: Bool -> Void = { _ in }
+    public var onTitleChanged: (String?) -> Void = { _ in }
+    public var onURLChanged: (URL?) -> Void = { _ in }
+    public var onProgressChanged: (Double) -> Void = { _ in }
+    public var onCanGoBackChanged: (Bool) -> Void = { _ in }
+    public var onCanGoForwardChanged: (Bool) -> Void = { _ in }
+    public var onHasOnlySecureContentChanged: (Bool) -> Void = { _ in }
+    public var onLoadingStatusChanged: (Bool) -> Void = { _ in }
 
     // MARK: -
 
-    public init(_ webView: WKWebView) {
+    public init(obserbee webView: WKWebView) {
         self.webView = webView
         super.init()
         observeProperties()
@@ -37,7 +37,7 @@ public class WebViewObserver: NSObject {
 
     private func observeProperties() {
         for k in keyPaths {
-            webView.addObserver(self, forKeyPath: k.rawValue, options: .New, context: &context)
+            webView.addObserver(self, forKeyPath: k.rawValue, options: .new, context: &context)
         }
     }
 
@@ -47,21 +47,21 @@ public class WebViewObserver: NSObject {
         }
     }
 
-    private func dispatchObserver(keyPath: KeyPath) {
+    private func dispatchObserver(_ keyPath: KeyPath) {
         switch keyPath {
-        case .Title: onTitleChanged(webView.title)
-        case .URL: onURLChanged(webView.URL)
-        case .EstimatedProgress: onProgressChanged(webView.estimatedProgress)
-        case .CanGoBack: onCanGoBackChanged(webView.canGoBack)
-        case .CanGoForward: onCanGoForwardChanged(webView.canGoForward)
-        case .HasOnlySecureContent: onHasOnlySecureContentChanged(webView.hasOnlySecureContent)
-        case .Loading: onLoadingStatusChanged(webView.loading)
+        case .title: onTitleChanged(webView.title)
+        case .url: onURLChanged(webView.url)
+        case .estimatedProgress: onProgressChanged(webView.estimatedProgress)
+        case .canGoBack: onCanGoBackChanged(webView.canGoBack)
+        case .canGoForward: onCanGoForwardChanged(webView.canGoForward)
+        case .hasOnlySecureContent: onHasOnlySecureContentChanged(webView.hasOnlySecureContent)
+        case .loading: onLoadingStatusChanged(webView.isLoading)
         }
     }
 
     // MARK: - Key Value Observation
 
-    public override func observeValueForKeyPath(keyPath: String?, ofObject: AnyObject?, change: [String: AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    public override func observeValue(forKeyPath keyPath: String?, of ofObject: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         guard context == &self.context else {
             return
         }
@@ -69,6 +69,12 @@ public class WebViewObserver: NSObject {
             dispatchObserver(keyPath)
         }
     }
+
+}
+
+public extension WebViewObserver {
+    @available(*, unavailable, renamed: "init(obserbee:)")
+    public convenience init(_ webView: WKWebView) { fatalError() }
 
 }
 
