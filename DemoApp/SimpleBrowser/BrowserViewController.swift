@@ -55,7 +55,7 @@ class BrowserViewController: ZenWebViewController {
         shareItem.isEnabled = !loading
     }
 
-    func updateStatusBar(_: AnyObject?) {
+    @objc func updateStatusBar(_: AnyObject?) {
         setNeedsStatusBarAppearanceUpdate()
     }
 
