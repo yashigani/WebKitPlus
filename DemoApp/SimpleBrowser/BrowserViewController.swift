@@ -63,6 +63,7 @@ class BrowserViewController: ZenWebViewController {
 
     @IBAction func shareTapped(_: AnyObject?) {
         let vc = UIActivityViewController(activityItems: [webView.url!, webView.title!], applicationActivities: nil)
+        vc.popoverPresentationController?.barButtonItem = shareItem
         navigationController?.present(vc, animated: true, completion: nil)
     }
 
