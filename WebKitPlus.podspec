@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name = "WebKitPlus"
-    s.version = "0.2.0"
+    s.version = "0.3.0"
     s.summary = "A support library for WKWebView."
 
     s.description = <<-DESC
@@ -17,6 +17,6 @@ Pod::Spec.new do |s|
 
     s.source_files = "WebKitPlus/*.{swift,h}"
     s.resource_bundles = { "WebKitPlus" => ["WebKitPlus/*.lproj"] }
-    s.pod_target_xcconfig = { "SWIFT_VERSION" => "3.0" }
+    s.pod_target_xcconfig = { "SWIFT_VERSION" => "4.1" }
 end
 
