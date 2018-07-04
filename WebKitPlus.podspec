@@ -17,6 +17,9 @@ Pod::Spec.new do |s|
 
     s.source_files = "WebKitPlus/*.{swift,h}"
     s.resource_bundles = { "WebKitPlus" => ["WebKitPlus/*.lproj"] }
-    s.pod_target_xcconfig = { "SWIFT_VERSION" => "4.1" }
+    s.pod_target_xcconfig = { "APPLICATION_EXTENSION_API_ONLY" => "YES" }
+
+    s.swift_version = "4.1"
+    s.cocoapods_version = ">= 1.4.0"
 end
 
