@@ -215,7 +215,7 @@
 				TargetAttributes = {
 					3FE36B511AA902DD005D06FE = {
 						CreatedOnToolsVersion = 6.1.1;
-						LastSwiftMigration = 0930;
+						LastSwiftMigration = 1130;
 					};
 					3FE36B661AA902DD005D06FE = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -229,8 +229,10 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = 3FE36B491AA902DD005D06FE;
 			productRefGroup = 3FE36B531AA902DD005D06FE /* Products */;
@@ -455,7 +457,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.yashigani.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -469,7 +471,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.yashigani.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
