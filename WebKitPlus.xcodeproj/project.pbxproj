@@ -195,12 +195,12 @@
 			};
 			buildConfigurationList = 3FE36B151AA88E52005D06FE /* Build configuration list for PBXProject "WebKitPlus" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				ja,
+				Base,
 			);
 			mainGroup = 3FE36B111AA88E52005D06FE;
 			productRefGroup = 3FE36B1C1AA88E52005D06FE /* Products */;

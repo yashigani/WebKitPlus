@@ -226,10 +226,9 @@
 			};
 			buildConfigurationList = 3FE36B4D1AA902DD005D06FE /* Build configuration list for PBXProject "SimpleBrowser" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 				ja,
