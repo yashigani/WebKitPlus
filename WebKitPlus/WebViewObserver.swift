@@ -74,7 +74,7 @@ public class WebViewObserver: NSObject {
 
 public extension WebViewObserver {
     @available(*, unavailable, renamed: "init(obserbee:)")
-    public convenience init(_ webView: WKWebView) { fatalError() }
+    convenience init(_ webView: WKWebView) { fatalError() }
 
 }
 
