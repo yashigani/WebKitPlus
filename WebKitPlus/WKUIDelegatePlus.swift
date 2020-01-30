@@ -76,6 +76,6 @@ extension WKUIDelegatePlus: WKUIDelegate {
 
 public extension WKUIDelegatePlus {
     @available(*, unavailable, renamed: "init(parentViewController:)")
-    public convenience init(_ viewController: UIViewController) { fatalError() }
+    convenience init(_ viewController: UIViewController) { fatalError() }
 }
 

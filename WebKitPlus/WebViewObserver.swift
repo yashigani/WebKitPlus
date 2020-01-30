@@ -2,7 +2,7 @@ import UIKit
 import WebKit
 
 public class WebViewObserver: NSObject {
-    enum KeyPath: String {
+    enum KeyPath: String, CaseIterable {
         case title
         case url = "URL"
         case estimatedProgress
@@ -13,11 +13,7 @@ public class WebViewObserver: NSObject {
     }
     let webView: WKWebView
     private var context: UInt8 = 0
-    private let keyPaths: [KeyPath] = [
-        .title, .url, .estimatedProgress,
-        .canGoBack, .canGoForward,
-        .hasOnlySecureContent, .loading,
-    ]
+    private let keyPaths: [KeyPath] = KeyPath.allCases
 
     public var onTitleChanged: (String?) -> Void = { _ in }
     public var onURLChanged: (URL?) -> Void = { _ in }
@@ -74,7 +70,7 @@ public class WebViewObserver: NSObject {
 
 public extension WebViewObserver {
     @available(*, unavailable, renamed: "init(obserbee:)")
-    public convenience init(_ webView: WKWebView) { fatalError() }
+    convenience init(_ webView: WKWebView) { fatalError() }
 
 }
 
