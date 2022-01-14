@@ -14,23 +14,15 @@ open class ZenWebViewController: UIViewController {
         webView.uiDelegate = UIDelegate
         view.insertSubview(webView, at: 0)
 
-        if #available(iOSApplicationExtension 11.0, *) {
-            webView.scrollView.contentInsetAdjustmentBehavior = .scrollableAxes
+        webView.scrollView.contentInsetAdjustmentBehavior = .scrollableAxes
 
-            let constraints = [
-                webView.topAnchor.constraint(equalTo: view.topAnchor),
-                webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-                webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                webView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-            ]
-            NSLayoutConstraint.activate(constraints)
-        } else {
-            let views = ["view": webView]
-            NSLayoutConstraint.activate(
-                NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[view]-0-|", options: [], metrics: nil, views: views) +
-                    NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[view]-0-|", options: [], metrics: nil, views: views)
-            )
-        }
+        let constraints = [
+            webView.topAnchor.constraint(equalTo: view.topAnchor),
+            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            webView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
     }
 
     // MARK: - IBAction
