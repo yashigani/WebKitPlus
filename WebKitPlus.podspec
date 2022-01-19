@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
     s.homepage = "https://github.com/yashigani/WebKitPlus"
     s.license = { :type => "MIT", :file => "LICENSE" }
 
-    s.ios.deployment_target = "8.0"
+    s.ios.deployment_target = "12.0"
     s.framework = "WebKit"
     s.source = { :git => "https://github.com/yashigani/WebKitPlus.git", :tag => "#{s.version}" }
 

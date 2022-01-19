@@ -7,7 +7,7 @@ A support library for WKWebView.
 
 ## Requirements
 
-- iOS 8.0 later
+- iOS 12.0 later
 
 ## Usage
 
