@@ -15,8 +15,8 @@ Pod::Spec.new do |s|
     s.framework = "WebKit"
     s.source = { :git => "https://github.com/yashigani/WebKitPlus.git", :tag => "#{s.version}" }
 
-    s.source_files = "WebKitPlus/*.{swift,h}"
-    s.resource_bundles = { "WebKitPlus" => ["WebKitPlus/*.lproj"] }
+    s.source_files = "Sources/WebKitPlus/**/*.{swift,h}"
+    s.resources = "Sources/WebKitPlus/Sources/Resources/**/*.lproj"
     s.pod_target_xcconfig = { "APPLICATION_EXTENSION_API_ONLY" => "YES" }
 
     s.swift_version = "5.0"
