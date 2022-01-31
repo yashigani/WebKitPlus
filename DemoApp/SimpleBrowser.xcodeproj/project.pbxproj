@@ -51,6 +51,7 @@
 		3FE36B6D1AA902DD005D06FE /* SimpleBrowserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleBrowserTests.swift; sourceTree = "<group>"; };
 		3FE36BC81AAAE926005D06FE /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		3FE36BC91AAAE926005D06FE /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		6DAEE79627A7CDA000FC7A97 /* WebKitPlus */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = WebKitPlus; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +75,7 @@
 		3FE36B491AA902DD005D06FE = {
 			isa = PBXGroup;
 			children = (
+				6DAEE79527A7CDA000FC7A97 /* Packages */,
 				3FE36B541AA902DD005D06FE /* SimpleBrowser */,
 				3FE36B6A1AA902DD005D06FE /* SimpleBrowserTests */,
 				3FE36B531AA902DD005D06FE /* Products */,
@@ -125,6 +127,14 @@
 				3FE36B6C1AA902DD005D06FE /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6DAEE79527A7CDA000FC7A97 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				6DAEE79627A7CDA000FC7A97 /* WebKitPlus */,
+			);
+			name = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
