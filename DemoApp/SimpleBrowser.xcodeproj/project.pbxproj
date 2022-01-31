@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		3FE36B5F1AA902DD005D06FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FE36B5E1AA902DD005D06FE /* Images.xcassets */; };
 		3FE36B621AA902DD005D06FE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FE36B601AA902DD005D06FE /* LaunchScreen.xib */; };
 		3FE36B6E1AA902DD005D06FE /* SimpleBrowserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE36B6D1AA902DD005D06FE /* SimpleBrowserTests.swift */; };
+		6DAEE79927A7CDE900FC7A97 /* WebKitPlus in Frameworks */ = {isa = PBXBuildFile; productRef = 6DAEE79827A7CDE900FC7A97 /* WebKitPlus */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DAEE79927A7CDE900FC7A97 /* WebKitPlus in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +81,7 @@
 				3FE36B541AA902DD005D06FE /* SimpleBrowser */,
 				3FE36B6A1AA902DD005D06FE /* SimpleBrowserTests */,
 				3FE36B531AA902DD005D06FE /* Products */,
+				6DAEE79727A7CDE900FC7A97 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,6 +140,13 @@
 			name = Packages;
 			sourceTree = "<group>";
 		};
+		6DAEE79727A7CDE900FC7A97 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -154,6 +164,9 @@
 			dependencies = (
 			);
 			name = SimpleBrowser;
+			packageProductDependencies = (
+				6DAEE79827A7CDE900FC7A97 /* WebKitPlus */,
+			);
 			productName = SimpleBrowser;
 			productReference = 3FE36B521AA902DD005D06FE /* SimpleBrowser.app */;
 			productType = "com.apple.product-type.application";
@@ -388,7 +401,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -399,7 +413,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SimpleBrowser/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.yashigani.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -413,7 +430,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SimpleBrowser/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.yashigani.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -435,7 +455,11 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = SimpleBrowserTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.yashigani.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -453,7 +477,11 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = SimpleBrowserTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.yashigani.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -493,6 +521,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6DAEE79827A7CDE900FC7A97 /* WebKitPlus */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WebKitPlus;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3FE36B4A1AA902DD005D06FE /* Project object */;
 }
