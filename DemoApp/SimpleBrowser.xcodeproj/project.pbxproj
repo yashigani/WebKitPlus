@@ -8,43 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		3F33CD6D1AA9705B00E56293 /* BrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F33CD6C1AA9705B00E56293 /* BrowserViewController.swift */; };
-		3F33CD6E1AA9707F00E56293 /* WebKitPlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FE36BBF1AA91DCE005D06FE /* WebKitPlus.framework */; };
 		3FE36B581AA902DD005D06FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE36B571AA902DD005D06FE /* AppDelegate.swift */; };
 		3FE36B5D1AA902DD005D06FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FE36B5B1AA902DD005D06FE /* Main.storyboard */; };
 		3FE36B5F1AA902DD005D06FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FE36B5E1AA902DD005D06FE /* Images.xcassets */; };
 		3FE36B621AA902DD005D06FE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FE36B601AA902DD005D06FE /* LaunchScreen.xib */; };
 		3FE36B6E1AA902DD005D06FE /* SimpleBrowserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE36B6D1AA902DD005D06FE /* SimpleBrowserTests.swift */; };
-		3FE36BC71AAAE67D005D06FE /* WebKitPlus.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 3FE36BBF1AA91DCE005D06FE /* WebKitPlus.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3F33CD6F1AA9708900E56293 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3FE36BB91AA91DCE005D06FE /* WebKitPlus.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 3FE36B1A1AA88E52005D06FE;
-			remoteInfo = WebKitPlus;
-		};
 		3FE36B681AA902DD005D06FE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3FE36B4A1AA902DD005D06FE /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3FE36B511AA902DD005D06FE;
 			remoteInfo = SimpleBrowser;
-		};
-		3FE36BBE1AA91DCE005D06FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3FE36BB91AA91DCE005D06FE /* WebKitPlus.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3FE36B1B1AA88E52005D06FE;
-			remoteInfo = WebKitPlus;
-		};
-		3FE36BC01AA91DCE005D06FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3FE36BB91AA91DCE005D06FE /* WebKitPlus.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3FE36B261AA88E52005D06FE;
-			remoteInfo = WebKitPlusTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -55,7 +32,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3FE36BC71AAAE67D005D06FE /* WebKitPlus.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -73,7 +49,6 @@
 		3FE36B671AA902DD005D06FE /* SimpleBrowserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleBrowserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FE36B6C1AA902DD005D06FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FE36B6D1AA902DD005D06FE /* SimpleBrowserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleBrowserTests.swift; sourceTree = "<group>"; };
-		3FE36BB91AA91DCE005D06FE /* WebKitPlus.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = WebKitPlus.xcodeproj; path = ../WebKitPlus.xcodeproj; sourceTree = "<group>"; };
 		3FE36BC81AAAE926005D06FE /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		3FE36BC91AAAE926005D06FE /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,7 +58,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F33CD6E1AA9707F00E56293 /* WebKitPlus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,7 +74,6 @@
 		3FE36B491AA902DD005D06FE = {
 			isa = PBXGroup;
 			children = (
-				3FE36BB91AA91DCE005D06FE /* WebKitPlus.xcodeproj */,
 				3FE36B541AA902DD005D06FE /* SimpleBrowser */,
 				3FE36B6A1AA902DD005D06FE /* SimpleBrowserTests */,
 				3FE36B531AA902DD005D06FE /* Products */,
@@ -154,15 +127,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		3FE36BBA1AA91DCE005D06FE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3FE36BBF1AA91DCE005D06FE /* WebKitPlus.framework */,
-				3FE36BC11AA91DCE005D06FE /* WebKitPlusTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -178,7 +142,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				3F33CD701AA9708900E56293 /* PBXTargetDependency */,
 			);
 			name = SimpleBrowser;
 			productName = SimpleBrowser;
@@ -236,12 +199,6 @@
 			mainGroup = 3FE36B491AA902DD005D06FE;
 			productRefGroup = 3FE36B531AA902DD005D06FE /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 3FE36BBA1AA91DCE005D06FE /* Products */;
-					ProjectRef = 3FE36BB91AA91DCE005D06FE /* WebKitPlus.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				3FE36B511AA902DD005D06FE /* SimpleBrowser */,
@@ -249,23 +206,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		3FE36BBF1AA91DCE005D06FE /* WebKitPlus.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = WebKitPlus.framework;
-			remoteRef = 3FE36BBE1AA91DCE005D06FE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3FE36BC11AA91DCE005D06FE /* WebKitPlusTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = WebKitPlusTests.xctest;
-			remoteRef = 3FE36BC01AA91DCE005D06FE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3FE36B501AA902DD005D06FE /* Resources */ = {
@@ -308,11 +248,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3F33CD701AA9708900E56293 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = WebKitPlus;
-			targetProxy = 3F33CD6F1AA9708900E56293 /* PBXContainerItemProxy */;
-		};
 		3FE36B691AA902DD005D06FE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3FE36B511AA902DD005D06FE /* SimpleBrowser */;
