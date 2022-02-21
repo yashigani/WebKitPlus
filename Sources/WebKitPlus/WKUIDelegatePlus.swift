@@ -11,7 +11,7 @@ public class WKUIDelegatePlus: NSObject {
             vc?.present(alert, animated: true, completion: nil)
         }
     }
-    
+
 }
 
 extension WKUIDelegatePlus: WKUIDelegate {
