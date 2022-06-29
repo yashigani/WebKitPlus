@@ -3,27 +3,25 @@ import UIKit
 /// Return UIAlertController? that input form for user credential if needed.
 public func alert(for challenge: URLAuthenticationChallenge, completion: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) -> UIAlertController? {
     let space = challenge.protectionSpace
-    let alert: UIAlertController?
-    if space.isUserCredential {
-        alert = UIAlertController(title: "\(space.`protocol`!)://\(space.host):\(space.port)", message: space.realm, preferredStyle: .alert)
-        alert?.addTextField {
-            $0.placeholder = localizedString(for: "user")
-        }
-        alert?.addTextField {
-            $0.placeholder = localizedString(for: "password")
-            $0.isSecureTextEntry = true
-        }
-        alert?.addAction(UIAlertAction(title: localizedString(for: "Cancel"), style: .cancel) { _ in
-            completion(.cancelAuthenticationChallenge, nil)
-        })
-        alert?.addAction(UIAlertAction(title: localizedString(for: "OK"), style: .default) { _ in
-            let textFields = alert!.textFields!
-            let credential = URLCredential(user: textFields[0].text!, password: textFields[1].text!, persistence: .forSession)
-            completion(.useCredential, credential)
-        })
-    } else {
-        alert = nil
+    guard space.isUserCredential else {
+        return nil
     }
+    let alert = UIAlertController(title: "\(space.`protocol`!)://\(space.host):\(space.port)", message: space.realm, preferredStyle: .alert)
+    alert.addTextField {
+        $0.placeholder = localizedString(for: "user")
+    }
+    alert.addTextField {
+        $0.placeholder = localizedString(for: "password")
+        $0.isSecureTextEntry = true
+    }
+    alert.addAction(UIAlertAction(title: localizedString(for: "Cancel"), style: .cancel) { _ in
+        completion(.cancelAuthenticationChallenge, nil)
+    })
+    alert.addAction(UIAlertAction(title: localizedString(for: "OK"), style: .default) { _ in
+        let textFields = alert.textFields!
+        let credential = URLCredential(user: textFields[0].text!, password: textFields[1].text!, persistence: .forSession)
+        completion(.useCredential, credential)
+    })
     return alert
 }
 
