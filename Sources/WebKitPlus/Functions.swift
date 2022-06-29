@@ -30,21 +30,6 @@ public func alertForAuthentication(_ challenge: URLAuthenticationChallenge, _ co
     fatalError()
 }
 
-extension URLProtectionSpace {
-
-    fileprivate var isUserCredential: Bool {
-        switch authenticationMethod {
-        case NSURLAuthenticationMethodDefault where `protocol` == "http":
-            return true
-        case NSURLAuthenticationMethodHTTPBasic, NSURLAuthenticationMethodHTTPDigest:
-            return true
-        default:
-            return false
-        }
-    }
-
-}
-
 public func alert(for error: NSError) -> UIAlertController? {
     if error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled { return nil }
     // Ignore WebKitErrorFrameLoadInterruptedByPolicyChange
