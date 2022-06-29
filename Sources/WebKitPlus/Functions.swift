@@ -33,11 +33,12 @@ public func alertForAuthentication(_ challenge: URLAuthenticationChallenge, _ co
 extension URLProtectionSpace {
 
     fileprivate var isUserCredential: Bool {
-        if let p = `protocol` , p == "http" && authenticationMethod == NSURLAuthenticationMethodDefault {
+        switch authenticationMethod {
+        case NSURLAuthenticationMethodDefault where `protocol` == "http":
             return true
-        } else if authenticationMethod == NSURLAuthenticationMethodHTTPBasic || authenticationMethod == NSURLAuthenticationMethodHTTPDigest {
+        case NSURLAuthenticationMethodHTTPBasic, NSURLAuthenticationMethodHTTPDigest:
             return true
-        } else {
+        default:
             return false
         }
     }
