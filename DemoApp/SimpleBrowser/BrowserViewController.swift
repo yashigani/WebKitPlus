@@ -72,7 +72,7 @@ class BrowserViewController: ZenWebViewController {
 extension BrowserViewController: WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        guard let alert = alert(for: challenge, completion: completionHandler) else {
+        guard let alert = UIAlertController(for: challenge, completion: completionHandler) else {
             // Should call `completionHandler` if `alertForAuthentication` return `.None`.
             completionHandler(.performDefaultHandling, nil)
             return
