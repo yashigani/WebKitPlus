@@ -2,18 +2,8 @@ import UIKit
 import WebKit
 
 public class WebViewObserver: NSObject {
-    enum KeyPath: String, CaseIterable {
-        case title
-        case url = "URL"
-        case estimatedProgress
-        case canGoBack
-        case canGoForward
-        case hasOnlySecureContent
-        case loading
-    }
     let webView: WKWebView
-    private var context: UInt8 = 0
-    private let keyPaths: [KeyPath] = KeyPath.allCases
+    private var observations: [NSKeyValueObservation] = []
 
     public var onTitleChanged: (String?) -> Void = { _ in }
     public var onURLChanged: (URL?) -> Void = { _ in }
@@ -28,42 +18,63 @@ public class WebViewObserver: NSObject {
     public init(obserbee webView: WKWebView) {
         self.webView = webView
         super.init()
-        observeProperties()
-    }
 
-    private func observeProperties() {
-        for k in keyPaths {
-            webView.addObserver(self, forKeyPath: k.rawValue, options: .new, context: &context)
-        }
-    }
-
-    deinit {
-        for k in keyPaths {
-            webView.removeObserver(self, forKeyPath: k.rawValue, context: &context)
-        }
-    }
-
-    private func dispatchObserver(_ keyPath: KeyPath) {
-        switch keyPath {
-        case .title: onTitleChanged(webView.title)
-        case .url: onURLChanged(webView.url)
-        case .estimatedProgress: onProgressChanged(webView.estimatedProgress)
-        case .canGoBack: onCanGoBackChanged(webView.canGoBack)
-        case .canGoForward: onCanGoForwardChanged(webView.canGoForward)
-        case .hasOnlySecureContent: onHasOnlySecureContentChanged(webView.hasOnlySecureContent)
-        case .loading: onLoadingStatusChanged(webView.isLoading)
-        }
-    }
-
-    // MARK: - Key Value Observation
-
-    public override func observeValue(forKeyPath keyPath: String?, of ofObject: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        guard context == &self.context else {
-            return
-        }
-        if let keyPath = keyPath.flatMap(KeyPath.init) {
-            dispatchObserver(keyPath)
-        }
+        self.observations.append(
+            webView.observe(\.title, options: .new) { [weak self] _, change in
+                guard let title = change.newValue else {
+                    return
+                }
+                self?.onTitleChanged(title)
+            }
+        )
+        self.observations.append(
+            webView.observe(\.url, options: .new) { [weak self] _, change in
+                guard let url = change.newValue else {
+                    return
+                }
+                self?.onURLChanged(url)
+            }
+        )
+        self.observations.append(
+            webView.observe(\.estimatedProgress, options: .new) { [weak self] _, change in
+                guard let progress = change.newValue else {
+                    return
+                }
+                self?.onProgressChanged(progress)
+            }
+        )
+        self.observations.append(
+            webView.observe(\.canGoBack, options: .new) { [weak self] _, change in
+                guard let canGoBackChanged = change.newValue else {
+                    return
+                }
+                self?.onCanGoBackChanged(canGoBackChanged)
+            }
+        )
+        self.observations.append(
+            webView.observe(\.canGoForward, options: .new) { [weak self] _, change in
+                guard let canGoForward = change.newValue else {
+                    return
+                }
+                self?.onCanGoForwardChanged(canGoForward)
+            }
+        )
+        self.observations.append(
+            webView.observe(\.hasOnlySecureContent, options: .new) { [weak self] _, change in
+                guard let hasOnlySecureContent = change.newValue else {
+                    return
+                }
+                self?.onHasOnlySecureContentChanged(hasOnlySecureContent)
+            }
+        )
+        self.observations.append(
+            webView.observe(\.isLoading, options: .new) { [weak self] _, change in
+                guard let isLoading = change.newValue else {
+                    return
+                }
+                self?.onLoadingStatusChanged(isLoading)
+            }
+        )
     }
 
 }
